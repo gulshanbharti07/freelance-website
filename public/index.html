@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <header>
+        <div class="logo">Gulshan's Freelance Services</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <h1>Welcome to My Freelancer Website</h1>
+        <p>Providing high-quality web development & design services.</p>
+        <a href="#contact" class="cta-button">Hire Me</a>
+    </section>
+    
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I am Gulshan, a skilled web developer passionate about building modern and responsive websites.</p>
+    </section>
+    
+    <section id="services" class="services">
+        <h2>My Services</h2>
+        <ul>
+            <li>Web Development</li>
+            <li>UI/UX Design</li>
+            <li>SEO Optimization</li>
+            <li>Freelance Consulting</li>
+        </ul>
+    </section>
+    
+    <section id="portfolio" class="portfolio">
+        <h2>Portfolio</h2>
+        <p>Check out some of my recent projects!</p>
+    
+        <div class="portfolio-container">
+            <div class="project">
+                <img src="https://source.unsplash.com/300x200/?business" alt="Business Website">
+                <h3>Business Website</h3>
+                <p>A professional business website for startups.</p>
+                <a href="business-site/index.html" target="_blank">View Project</a>
+            </div>
+            
+            <div class="project">
+                <img src="https://source.unsplash.com/300x200/?blog" alt="Blog Website">
+                <h3>Tech Blog</h3>
+                <p>A modern blog for tech enthusiasts.</p>
+                <a href="blog web/index.html" target="_blank">View Project</a>
+            </div>
+    
+            <div class="project">
+                <img src="https://source.unsplash.com/300x200/?ecommerce" alt="E-Commerce Store">
+                <h3>E-Commerce Store</h3>
+                <p>An online store for selling products.</p>
+                <a href="e.com/index.html" target="_blank">View Project</a>
+            </div>
+        </div>
+    </section>
+    
+    
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <form action="/submit-contact" method="POST">
+
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+        <p id="responseMessage"></p>
+    </section>
+    
+    <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+    
+        const formData = {
+            name: this.name.value,
+            email: this.email.value,
+            message: this.message.value
+        };
+    
+        const response = await fetch('http://localhost:3000/submit-contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+        });
+    
+        const result = await response.json();
+        document.getElementById('responseMessage').textContent = result.message || result.error;
+    });
+    </script>
+    
+
+
+    
+</body>
+</html>

@@ -1,0 +1,167 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e7e1e1;
+    color: #333;
+}
+header {
+    background-color: #222;
+    color: rgb(250, 246, 246);
+    padding: 10px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+nav ul li {
+    display: inline;
+    
+}
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+.hero {
+    background: url('https://source.unsplash.com/1600x900/?technology') no-repeat center center/cover;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+.cta-button {
+    background-color: red;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.cta-button:hover {
+    background-color: darkred;
+}
+section {
+    padding: 50px 20px;
+    text-align: center;
+}
+.services ul {
+    list-style: none;
+    padding: 0;
+}
+.services ul li {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.portfolio img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    margin: 10px;
+}
+.contact form {
+    max-width: 500px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+.contact input, .contact textarea {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.contact button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.contact button:hover {
+    background-color: darkred;
+}
+.auth {
+    text-align: center;
+    padding: 50px 20px;
+}
+.auth input {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.auth button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+.auth button:hover {
+    background-color: darkred;
+}
+.portfolio-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project {
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.project img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.project h3 {
+    margin: 10px 0;
+}
+
+.project a {
+    display: inline-block;
+    text-decoration: none;
+    background: red;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.project a:hover {
+    background: darkred;
+}
