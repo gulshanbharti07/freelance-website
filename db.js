@@ -19,7 +19,7 @@
 // module.exports = db;
 const mysql = require('mysql2');
 
-const connection = mysql.createConnection(process.env.MYSQL_URL);
+const connection = mysql.createConnection(mysql://root:lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY@mysql.railway.internal:3306/railway);
 
 connection.connect((err) => {
     if (err) {
