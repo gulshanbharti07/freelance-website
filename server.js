@@ -14,11 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Serve Static Files (Frontend)
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html when visiting "/"
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.send("Backend is running successfully!");
 });
 
 // Handle Payment Form Submission
@@ -42,7 +42,7 @@ app.post('/submit-payment', (req, res) => {
 
 // Start the server
 app.listen(PORT, () => {
-    console.log(`✅ Server running at http://localhost:${PORT}`);
+    console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
 });
 app.post('/submit-contact', (req, res) => {
     const { name, email, message } = req.body;
