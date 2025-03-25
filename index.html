@@ -99,7 +99,7 @@
             message: this.message.value
         };
     
-        const response = await fetch('https://freelance-website-a43b.onrender.com', {
+        const response = await fetch('https://freelance-website-a43b.onrender.com/submit-message', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)
