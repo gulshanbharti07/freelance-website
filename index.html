@@ -99,11 +99,18 @@
             message: this.message.value
         };
     
-        const response = await fetch('https://freelance-website-a43b.onrender.com/submit-contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        });
+        fetch("https://freelance-website-a43b.onrender.com/get-messages")
+              .then(response => response.json())
+              .then(data => {
+                let output = "<h2>Contact Messages</h2><ul>";
+                data.forEach(msg => {
+                  output += `<li><strong>${msg.name}:</strong> ${msg.message} (Email: ${msg.email})</li>`;
+                });
+                output += "</ul>";
+                document.getElementById("messages").innerHTML = output;
+              })
+              .catch(error => console.error("Error fetching messages:", error));
+
     
         const result = await response.json();
         document.getElementById('responseMessage').textContent = result.message || result.error;
