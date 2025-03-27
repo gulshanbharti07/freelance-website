@@ -1,81 +1,4 @@
-// const mysql = require('mysql2');
 
-
-// // MySQL connection details
-// const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',         // Change this if you're using a different user
-//     password: 'NewPassword@123',  // Enter your MySQL password here
-//     database: 'mysite'    // Name of your MySQL database
-// });
-
-// // db.connect((err) => {
-// //     if (err) {
-// //         console.error('❌ MySQL Connection Failed:', err.stack);
-// //     } else {
-// //         console.log('✅ Connected to MySQL Database');
-// //     }
-// // });
-
-// // module.exports = db;
-// const mysql = require('mysql2');
-
-// const connection = mysql.createConnection({
-//     host: 'mysql.railway.internal',
-//     user: 'root',
-//     password: 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY',
-//     database: 'railway',
-//     port: 3306
-// });
-
-// connection.connect((err) => {
-//     if (err) {
-//         console.error("❌ MySQL Connection Failed:", err);
-//         return;
-
-
-// // MySQL connection details
-// const db = mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',         // Change this if you're using a different user
-//     password: 'NewPassword@123',  // Enter your MySQL password here
-//     database: 'mysite'    // Name of your MySQL database
-// });
-
-// db.connect((err) => {
-//     if (err) {
-//         console.error('❌ MySQL Connection Failed:', err.stack);
-//     } else {
-//         console.log('✅ Connected to MySQL Database');
-//     }
-// });
-
-// module.exports = db;
-
-// const mysql = require('mysql');
-
-// const connection = mysql.createConnection({
-//     host: 'nozomi.proxy.rlwy.net',
-//     user: 'root',
-//     password: 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY',
-//     database: 'railway',
-//     port: '19266',
-//     authPlugins: {
-//         mysql_clear_password: () => () => 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY'
-//     }
-// });
-
-// connection.connect(err => {
-//     if (err) {
-//         console.error('❌ MySQL Connection Failed:', err);
-//     } else {
-//         console.log('✅ MySQL Connected Successfully!');
-
-//     }
-//     console.log("✅ MySQL Connected Successfully!");
-// });
-
-// module.exports = connection;
 const mysql = require('mysql2'); // Use mysql2 instead of mysql
 
 const connection = mysql.createConnection({
@@ -84,8 +7,8 @@ const connection = mysql.createConnection({
     password: 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY',  // Your actual password
     database: 'railway',  // Example: 'railway'
     port: 19266 || 3306,  // Railway might use a custom port
-    ssl: {
-        rejectUnauthorized: true, // Use SSL for better security
+     ssl: {
+        rejectUnauthorized: false // ✅ Ignore self-signed certificate errors
     }
 });
 
