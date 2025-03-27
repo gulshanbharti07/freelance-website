@@ -52,27 +52,50 @@
 
 // module.exports = db;
 
-const mysql = require('mysql');
+// const mysql = require('mysql');
+
+// const connection = mysql.createConnection({
+//     host: 'nozomi.proxy.rlwy.net',
+//     user: 'root',
+//     password: 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY',
+//     database: 'railway',
+//     port: '19266',
+//     authPlugins: {
+//         mysql_clear_password: () => () => 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY'
+//     }
+// });
+
+// connection.connect(err => {
+//     if (err) {
+//         console.error('❌ MySQL Connection Failed:', err);
+//     } else {
+//         console.log('✅ MySQL Connected Successfully!');
+
+//     }
+//     console.log("✅ MySQL Connected Successfully!");
+// });
+
+// module.exports = connection;
+const mysql = require('mysql2'); // Use mysql2 instead of mysql
 
 const connection = mysql.createConnection({
-    host: 'nozomi.proxy.rlwy.net',
-    user: 'root',
-    password: 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY',
-    database: 'railway',
-    port: '19266',
-    authPlugins: {
-        mysql_clear_password: () => () => 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY'
+    host: 'nozomi.proxy.rlwy.net',  // Example: 'nozomi.proxy.rlwy.net'
+    user: 'root',  // Example: 'root'
+    password: 'lBwLLkfLOQMMokxhdDSIPQTfMzcviGIY',  // Your actual password
+    database: 'railway',  // Example: 'railway'
+    port: 19266 || 3306,  // Railway might use a custom port
+    ssl: {
+        rejectUnauthorized: true, // Use SSL for better security
     }
 });
 
-connection.connect(err => {
+// Connect to MySQL
+connection.connect((err) => {
     if (err) {
-        console.error('❌ MySQL Connection Failed:', err);
+        console.error("❌ MySQL Connection Failed:", err);
     } else {
-        console.log('✅ MySQL Connected Successfully!');
-
+        console.log("✅ Connected to MySQL Database");
     }
-    console.log("✅ MySQL Connected Successfully!");
 });
 
 module.exports = connection;
