@@ -17,9 +17,18 @@ app.use(bodyParser.json());
  app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve index.html when visiting "/"
-app.get("/", (req, res) => {
-    res.send("Backend is running successfully!");
+app.get("/get-messages", (req, res) => {
+  const sql = "SELECT * FROM contact_messages ORDER BY id DESC";
+  connection.query(sql, (err, results) => {
+    if (err) {
+      console.error("Error fetching messages:", err);
+      res.status(500).json({ error: "Failed to fetch messages" });
+    } else {
+      res.json(results);
+    }
+  });
 });
+
 
 // Handle Payment Form Submission
 
