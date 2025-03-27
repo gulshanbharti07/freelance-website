@@ -22,13 +22,7 @@ app.get("/", (req, res) => {
 });
 
 // Handle Payment Form Submission
-app.post('/submit-payment', (req, res) => {
-    const { name, email, card_number, expiry_date, cvv, amount } = req.body;
 
-    // Validate incoming data
-    if (!name || !email || !card_number || !expiry_date || !cvv || !amount) {
-        return res.status(400).json({ error: 'All fields are required!' });
-    }
 
     const sql = 'INSERT INTO payments (name, email, card_number, expiry_date, cvv, amount) VALUES (?, ?, ?, ?, ?, ?)';
     db.query(sql, [name, email, card_number, expiry_date, cvv, amount], (err, result) => {
@@ -44,13 +38,18 @@ app.post('/submit-payment', (req, res) => {
 app.listen(PORT, () => {
     console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
 });
-app.post('/submit-contact', (req, res) => {
-    const { name, email, message } = req.body;
-
-    // Validate incoming data
-    if (!name || !email || !message) {
-        return res.status(400).json({ error: 'All fields are required!' });
+app.post("/submit-contact", (req, res) => {
+  const { name, email, message } = req.body;
+  const sql = "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
+  connection.query(sql, [name, email, message], (err, result) => {
+    if (err) {
+      console.error("Error saving message:", err);
+      res.status(500).json({ error: "Database insert failed" });
+    } else {
+      res.json({ message: "Message saved successfully!" });
     }
+  });
+});
 
     // Insert the message into MySQL (or do other processing)
     const sql = 'INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)';
