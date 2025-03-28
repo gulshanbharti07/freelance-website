@@ -6,7 +6,7 @@ const path = require('path');
 const db = require('./db'); // Import MySQL connection
 
 const app = express();
-const PORT = 3000;
+const PORT = 19266 || 3306,
 
 // Middleware
 app.use(cors());
