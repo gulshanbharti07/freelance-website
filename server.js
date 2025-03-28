@@ -5,20 +5,24 @@ const cors = require('cors');
 const path = require('path');
 const db = require('./db'); // Import MySQL connection
 
+// ✅ Ensure 'app' is declared only once
 const app = express();
-const PORT = 19266 || 3306,
+const PORT = 19266 || 3306;
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve index.html from root directory
+// ✅ Serve static files from the root directory (or public folder)
+app.use(express.static(path.join(__dirname)));
+
+// ✅ Serve index.html when visiting "/"
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Fetch messages from MySQL
+// ✅ Fetch messages from MySQL
 app.get("/get-messages", (req, res) => {
     const sql = "SELECT * FROM contact_messages ORDER BY id DESC";
     db.query(sql, (err, results) => {
@@ -31,7 +35,7 @@ app.get("/get-messages", (req, res) => {
     });
 });
 
-// Handle contact form submission
+// ✅ Handle contact form submission
 app.post('/submit-contact', (req, res) => {
     const { name, email, message } = req.body;
 
@@ -49,7 +53,7 @@ app.post('/submit-contact', (req, res) => {
     });
 });
 
-// Start the server
+// ✅ Start the server
 app.listen(PORT, () => {
     console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
 });
