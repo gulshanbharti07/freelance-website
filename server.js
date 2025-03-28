@@ -13,54 +13,31 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Serve Static Files (Frontend)
- app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Serve index.html when visiting "/"
 app.get("/get-messages", (req, res) => {
-  const sql = "SELECT * FROM contact_messages ORDER BY id DESC";
-  connection.query(sql, (err, results) => {
-    if (err) {
-      console.error("Error fetching messages:", err);
-      res.status(500).json({ error: "Failed to fetch messages" });
-    } else {
-      res.json(results);
-    }
-  });
-});
-
-
-// Handle Payment Form Submission
-
-
-    const sql = 'INSERT INTO payments (name, email, card_number, expiry_date, cvv, amount) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(sql, [name, email, card_number, expiry_date, cvv, amount], (err, result) => {
+    const sql = "SELECT * FROM contact_messages ORDER BY id DESC";
+    db.query(sql, (err, results) => {  // 🔥 Fixed: Changed `connection.query` to `db.query`
         if (err) {
-            console.error('❌ Database Insertion Error:', err);
-            return res.status(500).json({ error: 'Database error', details: err.message });
+            console.error("Error fetching messages:", err);
+            res.status(500).json({ error: "Failed to fetch messages" });
+        } else {
+            res.json(results);
         }
-        res.status(200).json({ message: 'Payment received successfully!' });
     });
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
-});
-app.post("/submit-contact", (req, res) => {
-  const { name, email, message } = req.body;
-  const sql = "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
-  connection.query(sql, [name, email, message], (err, result) => {
-    if (err) {
-      console.error("Error saving message:", err);
-      res.status(500).json({ error: "Database insert failed" });
-    } else {
-      res.json({ message: "Message saved successfully!" });
-    }
-  });
-});
+// Handle contact form submission
+app.post('/submit-contact', (req, res) => {
+    const { name, email, message } = req.body;
 
-    // Insert the message into MySQL (or do other processing)
+    // Validate incoming data
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: 'All fields are required!' });
+    }
+
+    // Insert the message into MySQL
     const sql = 'INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)';
     db.query(sql, [name, email, message], (err, result) => {
         if (err) {
@@ -70,4 +47,9 @@ app.post("/submit-contact", (req, res) => {
 
         res.status(200).json({ message: 'Message sent successfully!' });
     });
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
 });
