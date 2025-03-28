@@ -6,26 +6,19 @@ const path = require('path');
 const db = require('./db'); // Import MySQL connection
 
 const app = express();
-const PORT = 3000;
+const PORT = 19266 || 3306,
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(express.static(__dirname));
 
 
 
 // Serve index.html when visiting "/"
-app.get("/get-messages", (req, res) => {
-    const sql = "SELECT * FROM contact_messages ORDER BY id DESC";
-    db.query(sql, (err, results) => {  // 🔥 Fixed: Changed `connection.query` to `db.query`
-        if (err) {
-            console.error("Error fetching messages:", err);
-            res.status(500).json({ error: "Failed to fetch messages" });
-        } else {
-            res.json(results);
-        }
-    });
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Handle contact form submission
