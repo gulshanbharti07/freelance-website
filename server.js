@@ -2,30 +2,28 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mysql = require('mysql2');
 const cors = require('cors');
-const path = require('path');
 const db = require('./db'); // Import MySQL connection
 
-// ✅ Ensure 'app' is declared only once
 const app = express();
-const PORT = 19266 || 3306;
+const PORT = 19266 || 3000;  // ✅ Use dynamic port
 
-// Middleware
-app.use(cors());
+// ✅ Proper CORS configuration
+app.use(cors({
+    origin: "https://sapphirewebtech.in",  // ✅ Replace with your actual frontend domain
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+
+// ✅ Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// ✅ Serve static files from the root directory (or public folder)
-
-
-// ✅ Serve index.html when visiting "/"
-
 
 // ✅ Fetch messages from MySQL
 app.get("/get-messages", (req, res) => {
     const sql = "SELECT * FROM contact_messages ORDER BY id DESC";
     db.query(sql, (err, results) => {
         if (err) {
-            console.error("Error fetching messages:", err);
+            console.error("❌ Error fetching messages:", err);
             res.status(500).json({ error: "Failed to fetch messages" });
         } else {
             res.json(results);
@@ -53,5 +51,5 @@ app.post('/submit-contact', (req, res) => {
 
 // ✅ Start the server
 app.listen(PORT, () => {
-    console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
+    console.log(`✅ Server running on port ${19266}`);
 });
