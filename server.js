@@ -5,7 +5,7 @@ const cors = require('cors');
 const db = require('./db'); // Import MySQL connection
 
 const app = express();
-const PORT = 19266 || 3000;  // ✅ Use dynamic port
+const PORT = process.env.PORT || 3000;   // ✅ Use dynamic port
 
 // ✅ Proper CORS configuration
 app.use(cors({
@@ -51,5 +51,5 @@ app.post('/submit-contact', (req, res) => {
 
 // ✅ Start the server
 app.listen(PORT, () => {
-    console.log(`✅ Server running on port ${19266}`);
+    console.log(`✅ Server running on port ${PORT}`);
 });
