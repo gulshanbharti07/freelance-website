@@ -31,6 +31,10 @@ app.get("/get-messages", (req, res) => {
     });
 });
 
+app.get("/", (req, res) => {
+    res.send("✅ Backend is running!");
+});
+
 // ✅ Handle contact form submission
 app.post('/submit-contact', (req, res) => {
     const { name, email, message } = req.body;
