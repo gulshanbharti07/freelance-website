@@ -18,9 +18,7 @@ app.use(bodyParser.json());
 
 
 // ✅ Serve index.html when visiting "/"
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
-});
+
 
 // ✅ Fetch messages from MySQL
 app.get("/get-messages", (req, res) => {
@@ -55,5 +53,5 @@ app.post('/submit-contact', (req, res) => {
 
 // ✅ Start the server
 app.listen(PORT, () => {
-    console.log(`✅ Server running at https://www.sapphirewebtech.in`);
+    console.log(`✅ Server running at https://freelance-website-a43b.onrender.com`);
 });
